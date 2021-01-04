@@ -1,0 +1,17 @@
+<h1> Invite People </h1>
+
+<% @users.each do |user| %>
+    <% if Invite.where("user_id = ?", user.id).where("event_id = ?",@event.id).empty? %>
+        <%= user.username %>
+        <%= form_with model: [@event, @invite] do |f| %>
+        <%= f.hidden_field "user[id]", value: user.id %>
+        <%= f.submit %>
+        <% end %>
+    <% else %>
+        <%= user.username %>
+        <%= form_with url: "#{event_invites_path(@event)}/#{user.id}" , method: :delete do |f| %>
+        <%= f.hidden_field "user[id]", value: user.id %>
+        <%= f.submit "Uninvite" %>
+        <% end %>
+    <% end %>
+<% end %>

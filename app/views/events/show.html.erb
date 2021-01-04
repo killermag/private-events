@@ -1,0 +1,23 @@
+<h1>Event</h1>
+
+<%= @event.description %> <br>
+<%= @event.location %> <br>
+<%= @event.date %> <br>
+
+
+<h1>Creator</h1>
+<%= @event.creator.username %>
+
+
+<h1>Attendees</h1>
+<% @event.attendees.each do |a| %>
+<%= a.username %><br>
+<% end %> <br> 
+<%= link_to 'Back', events_path %>
+<br>
+
+<% if user_signed_in? %>
+    <% if current_user.created_events.include? @event %>
+    <%= link_to 'invite', new_event_invite_path(@event) %>
+    <% end %>
+<% end %>

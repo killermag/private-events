@@ -1,0 +1,28 @@
+<h1>Events That I am attending </h1>
+
+<% boolean = true %>
+<%@events.each do |e| %>
+<h1><%= boolean ? "Past Events" : "Future Events" %></h1> <br>
+    <% if e.empty? %>
+    <h4>No events, waiting till you get invites <>
+    <% else %>
+        <% e.each do |s| %>
+            <% count = 1 %>
+            <%= "Event #{count}" %> <br>
+            <%= s.description %> <br>
+            <%= s.location %> <br>
+            <%= s.date %> <br>
+            <%= "By #{s.creator.username}" %> <br> 
+        <% end %>
+    <% end %>
+<% boolean = false %>
+<% end %>
+
+<h3>Events That I created </h3>
+
+<% @user_events.each do |e| %>
+    <%= e.description %>
+    <%= link_to 'invite', new_event_invite_path(e) %> <br>
+<% end %>
+
+<%= link_to 'back', root_path %>
