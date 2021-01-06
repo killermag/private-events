@@ -1,29 +1,56 @@
-<h2>Sign up</h2>
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-5">
+                <div class="field">
+                    <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: user_registration_path()) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                    <%= form_for(resource, as: resource_name, url: user_registration_path()) do |f| %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-  </div>
+                      <div class="field">
+                        <%= f.label :username, class: 'label' %>
+                          <div class="control">
+                            <%= f.text_field :username, autofocus: true, autocomplete: "username", class: 'input' %>
+                            <% if resource.errors[:username].any? %>
+                                <% resource.errors.full_messages_for(:username).each do |msg| %>
+                                    <p class="help is-danger"> <%= msg %> </p>
+                                <% end %>
+                            <% end %>
+                          </div>
+                      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+                      <div class="field">
+                        <%= f.label :password, class: 'label' %>
+                        <div class="control">
+                          <%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
+                          <% if resource.errors[:password].any? %>
+                              <% resource.errors.full_messages_for(:password).each do |msg| %>
+                                  <p class="help is-danger"> <%= msg %> </p>
+                              <% end %>
+                          <% end %>
+                        </div>
+                        
+                      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+                      <div class="field">
+                        <%= f.label :password_confirmation, class: 'label' %>
+                        <div class="control"> 
+                          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
+                        </div>
+                      </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+                      <div class="actions control">
+                        <%= f.submit "Sign up", class: 'button is-light' %>
+                      </div>
 
-<%= render "devise/shared/links" %>
+
+
+                    <% end %>
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

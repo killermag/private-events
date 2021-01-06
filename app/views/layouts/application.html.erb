@@ -11,6 +11,7 @@
   </head>
 
   <body>
+
     <nav class="navbar has-shadow is-white">
       <div class="navbar-brand">
         <%= link_to root_path, class: 'navbar-item' do %> 
@@ -43,6 +44,13 @@
       </div>
 
     </nav>
+    <% if notice %>
+      <div class="notification-global has-text-centered"> <p class="is-family-sans-serif has-text-success"> <%= notice %> </p> </div>
+    <% end %>
+    
+    <% if alert %>
+      <div class="notification-global has-text-centered"> <p class="is-family-sans-serif has-text-danger"> <%= alert %> </p> </div>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
