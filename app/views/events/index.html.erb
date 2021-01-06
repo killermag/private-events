@@ -1,35 +1,17 @@
-<nav>
-<%= link_to "New event", new_event_path %> 
-<% if !user_signed_in? %>
-  <%= link_to "sign up", new_user_registration_path %> 
-  <%= link_to 'sign in', new_user_session_path %>
-<% else %>
-  <%= link_to 'log out', destroy_user_session_path, method: :delete %> <br>
-  <%= link_to 'My profile', user_path(current_user) %>
-<% end %>
-</nav>
-
-<h1>Global events</h1>
-
-<p>Past events</p>
-<% if Event.past.any? %>
-  <% Event.past.each do |e| %>
-  <%= e.description %> <br>
-  <%= e.date%><br>
-  <%= e.location %><br><br>
-  <%= link_to 'show', e%>
-<%end %>
-<% else %>
-  <h3>None found</h3>
-<% end %>
-<% if Event.upcoming.any? %>
-  <p>Future events </p>
-  <% Event.upcoming.each do |e| %>
-  <%= e.description %> <br>
-  <%= e.date%><br>
-  <%= e.location %><br>
-  <%= link_to 'show', e%><br><br>
-  <%end %>
-<% else%>
-  <h3>None found </h3>
-<% end %>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <% if Event.upcoming.any? %> 
+                <% Event.upcoming.each do |event| %>
+                    <div class="column is-4">
+                        <div class="box">
+                            <p class="subtitle"> <%= event.description %> </p>
+                            <hr class="navbar-divider">
+                            <p class="helper"> <%= event.date %> </p>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>   
+        </div>
+    </div>
+</section>
