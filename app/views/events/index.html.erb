@@ -1,17 +1,43 @@
 <section class="section">
+
     <div class="container">
-        <div class="columns">
-            <% if Event.upcoming.any? %> 
-                <% Event.upcoming.each do |event| %>
-                    <div class="column is-4">
-                        <div class="box">
-                            <p class="subtitle"> <%= event.description %> </p>
-                            <hr class="navbar-divider">
-                            <p class="helper"> <%= event.date %> </p>
+        <h1 class="title">Upcoming Events</h1>
+        <% if Event.upcoming.any? %> 
+            <% Event.upcoming.each_slice(3).to_a.each do |subarray| %>
+                <div class="columns">
+                    <% subarray.each do |event| %>
+                        <div class="column is-4">
+                            <div class="box">
+                                <p class="subtitle"> <%= event.description %> </p>
+                                <hr class="navbar-divider">
+                                <p class="helper"> <%= event.date %> </p>
+                            </div>
                         </div>
-                    </div>
-                <% end %>
-            <% end %>   
-        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>  
+
+
+        <h1 class="title">Past Events</h1>
+        <% if Event.past.any? %> 
+            <% Event.past.each_slice(3).to_a.each do |subarray| %>
+                <div class="columns">
+                    <% subarray.each do |event| %>
+                        <div class="column is-4">
+                            <div class="box">
+                                <p class="subtitle"> <%= event.description %> </p>
+                                <hr class="navbar-divider">
+                                <p class="helper"> <%= event.date %> </p>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>  
+            
+
     </div>
 </section>
+
+

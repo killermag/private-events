@@ -1,32 +1,44 @@
-<%= form_with model: @event do |f| %> 
-
-   
-
-
-<% end %> 
-<%= link_to 'Back', root_path %>
-
-
 <section class="section">
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-6">
             
+                
+                <%= form_with model: @event do |f| %>
+
                 <div class="field">
-                    <%= form_with model: @event do |f| %>
                     <%= f.label :description, class: 'label' %>
-                    <%= f.label :location, class: 'label' %>
-                    <%= f.label :date, class: 'label' %>
-
                     <div class="control">
-                        <%= f.text_area :description, class: 'input' %> 
-                        <%= f.text_field :location, class: 'input' %>
-                        <%= f.date_field :date, class: 'input' %>
-                        <%= f.submit "Make Event", class: 'button is-small is-primary' %>
+                        <%= f.text_area :description, class: 'textarea is-large' %> 
                     </div>
-
-                    <% end %>
                 </div>
+
+                <div class="field">
+                    <%= f.label :location, class: 'label' %>
+                    <div class="control">
+                        <%= f.text_field :location, class: 'input' %>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <%= f.label :date, class: 'label' %>
+                    <div class="control">
+                        <%= f.date_field :date, class: 'input' %>
+                    </div>
+                </div>
+                
+                <div class="control">
+                    <%= f.submit "Make Event", class: 'button is-small is-primary' %>
+                </div>
+                
+
+                <%= link_to 'Back', root_path %>
+                    
+                    
+                </div>
+
+                <% end %>
+               
 
             </div>
         </div>
