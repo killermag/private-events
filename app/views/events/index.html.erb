@@ -7,11 +7,13 @@
                 <div class="columns">
                     <% subarray.each do |event| %>
                         <div class="column is-4">
-                            <div class="box">
-                                <p class="subtitle"> <%= event.description %> </p>
-                                <hr class="navbar-divider">
-                                <p class="helper"> <%= event.date %> </p>
-                            </div>
+                            <%= link_to event do %>
+                                <div class="box">
+                                    <p class="subtitle" id="subtitles"> <%= event.description %> </p>
+                                    <hr class="navbar-divider">
+                                    <p class="helper"> <%= event.date %> </p>
+                                </div>
+                            <% end %>
                         </div>
                     <% end %>
                 </div>
@@ -24,15 +26,23 @@
             <% Event.past.each_slice(3).to_a.each do |subarray| %>
                 <div class="columns">
                     <% subarray.each do |event| %>
-                        <div class="column is-4">
-                            <div class="box">
-                                <p class="subtitle"> <%= event.description %> </p>
-                                <hr class="navbar-divider">
-                                <p class="helper"> <%= event.date %> </p>
-                            </div>
+                        <div class="column is-4"> 
+
+                        
+                            <%= link_to event do %>
+                                
+                                <div class="box">
+                                    <p class="subtitle" id="subtitles"> <%= event.description %> </p>
+                                    <hr class="navbar-divider">
+                                    <p class="helper"> <%= event.date %> </p>
+                                </div>
+
+                            <% end %>
+
                         </div>
-                    <% end %>
+                    <% end %>  
                 </div>
+
             <% end %>
         <% end %>  
             

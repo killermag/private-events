@@ -1,19 +1,10 @@
-<h1>Event</h1>
-
-<%= @event.description %> <br>
-<%= @event.location %> <br>
-<%= @event.date %> <br>
-
-
-<h1>Creator</h1>
-<%= @event.creator.username %>
 
 
 <h1>Attendees</h1>
 <% @event.attendees.each do |a| %>
 <%= a.username %><br>
 <% end %> <br> 
-<%= link_to 'Back', events_path %>
+
 <br>
 
 <% if user_signed_in? %>
@@ -21,3 +12,38 @@
     <%= link_to 'invite', new_event_invite_path(@event) %>
     <% end %>
 <% end %>
+
+<%= link_to 'Back', events_path %>
+
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">   
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    
+                                    <%= @event.description %> <br>
+                                    
+                                    at: <small><%= @event.location %></small> <br>
+                                    on: <small><%= @event.date %> <br></small>
+
+
+                                </p>
+                            </div>
+
+                            <p class="has-text-right">
+                                ~<strong> <%= @event.creator.username%> </strong>
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</section>

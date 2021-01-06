@@ -51,15 +51,13 @@
     <% if alert %>
       <div class="notification-global has-text-centered"> <p class="is-family-sans-serif has-text-danger"> <%= alert %> </p> </div>
     <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
 
     <script type="text/javascript">
-      const burger = document.querySelector("#burger");
+      const burgers = document.querySelector("#burger");
       const menu = document.querySelector("#menu");
 
-      burger.addEventListener('click', () => {
+      burgers.addEventListener('click', () => {
         menu.classList.toggle('is-active')
       })
     </script>

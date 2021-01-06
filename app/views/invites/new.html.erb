@@ -1,19 +1,48 @@
-<h1> Invite People </h1>
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered ">
+            <div class="column is-narrow">
+                <div class="box">
 
-<% @users.each do |user| %>
-    <% if Invite.where("user_id = ?", user.id).where("event_id = ?",@event.id).empty? %>
-        <%= user.username %>
-        <%= form_with model: [@event, @invite] do |f| %>
-        <%= f.hidden_field "user[id]", value: user.id %>
-        <%= f.submit %>
-        <% end %>
-    <% else %>
-        <%= user.username %>
-        <%= form_with url: "#{event_invites_path(@event)}/#{user.id}" , method: :delete do |f| %>
-        <%= f.hidden_field "user[id]", value: user.id %>
-        <%= f.submit "Uninvite" %>
-        <% end %>
-    <% end %>
-<% end %>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="has-text-centered" > User </th>
+                                <th class="has-text-centered" > Invite </th>
+                            </tr>
+                        </thead>
 
-<%= link_to 'back', root_path %>
+                        <tbody>
+                            
+                        
+                            <% @users.each do |u| %>
+                                <tr>
+                                    <td class="has-text-centered" > <%= u.username %> </td>
+
+                                    <% if Invite.invited?(u.id,@event.id).empty? %> 
+                                        <%= form_with model: [@event, @invite] do |f| %>
+                                            <%= f.hidden_field "user[id]", value: u.id %> 
+                                            <td class="is-centered" > <%= f.submit "Invite", class: 'button is-primary is-small' %> </td>
+                                        <% end %>
+                                    <% else %>
+
+                                        <%= form_with url: "#{event_invites_path(@event)}/#{u.id}" , method: :delete do |f| %>
+                                            <%= f.hidden_field "u[id]", value: u.id %>
+                                            <td> <%= f.submit "Uninvite", class: 'button is-primary is-small' %> </td>
+                                        <% end %>
+
+                                    <% end %>
+                                </tr>
+                            <% end %>   
+
+                        </tbody>
+
+                    </table>
+                    <%= link_to 'back', root_path, class: 'button is-light-outlined is-fullwidth' %> 
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
